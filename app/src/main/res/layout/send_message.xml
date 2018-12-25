@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".activity.login.CarsActivity">
+
+    <include layout="@layout/toolbarads" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/touser"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Send Message to"
+            android:textSize="14sp" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/grey_40">
+
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_middle" />
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="428dp"
+                android:background="@drawable/txt_area_dark_yellow"
+                android:padding="@dimen/spacing_large"
+                android:textColorHint="@color/grey_40">
+
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/txtmessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:gravity="top"
+                    android:hint="Message"
+                    android:inputType="textMultiLine"
+                    android:maxLines="12"
+                    android:minLines="7"
+                    android:textColor="@android:color/white"
+                    android:theme="@style/EditText.Yellow" />
+
+
+                <Button
+                    android:id="@+id/btnlsend"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginRight="-4dp"
+                    android:background="@drawable/btn_rounded_green"
+                    android:text="SEND MESSAGE"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/grey_40">
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/grey_40">
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+
+</RelativeLayout>
