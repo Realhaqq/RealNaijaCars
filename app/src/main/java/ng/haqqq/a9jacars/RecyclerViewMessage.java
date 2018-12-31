@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class RecyclerViewMessage extends RecyclerView.Adapter<RecyclerViewMessage.ViewHolder> {
@@ -46,9 +48,12 @@ public class RecyclerViewMessage extends RecyclerView.Adapter<RecyclerViewMessag
         MessageAdapter getDataAdapter1 =  getDataAdapter.get(position);
 
 
-        Viewholder.fromuserid.setText(getDataAdapter1.getFullname());
-
+        Viewholder.fullname.setText(getDataAdapter1.getFullname());
         Viewholder.content.setText(getDataAdapter1.getContent());
+        Viewholder.fromuserid.setText(getDataAdapter1.getFromuserid());
+        Viewholder.mdate.setText(getDataAdapter1.getDate());
+
+
 
 
 
@@ -69,15 +74,20 @@ public class RecyclerViewMessage extends RecyclerView.Adapter<RecyclerViewMessag
 
         public TextView fromuserid;
         public TextView content;
+        public TextView fullname;
+        public TextView mdate;
+
 
 
         public ViewHolder(View itemView) {
 
             super(itemView);
 
-            fromuserid = (TextView) itemView.findViewById(R.id.txtuser) ;
+            fullname = itemView.findViewById(R.id.txtuser) ;
+            content = itemView.findViewById(R.id.mmessage);
+            fromuserid = itemView.findViewById(R.id.memail);
+            mdate = itemView.findViewById(R.id.mdate);
 
-            content = (TextView) itemView.findViewById(R.id.txtmessage) ;
 
 
 

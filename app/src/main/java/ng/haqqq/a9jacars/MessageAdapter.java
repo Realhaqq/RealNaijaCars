@@ -6,7 +6,15 @@ public class MessageAdapter {
     public String touserid;
     public String content;
     public String fullname;
+    public String date;
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getFromuserid() {
         return fromuserid;

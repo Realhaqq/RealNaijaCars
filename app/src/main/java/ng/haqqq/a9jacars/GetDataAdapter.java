@@ -1,5 +1,7 @@
 package ng.haqqq.a9jacars;
 
+import android.widget.Filter;
+
 public class GetDataAdapter {
 
     public String ImageServerUrl;
@@ -14,7 +16,16 @@ public class GetDataAdapter {
     public String email;
     public String fullname;
     public String countries;
+    public String imgs;
+    public String neg;
 
+
+    public  String getImgs(){
+        return imgs;
+    }
+    public void setImgs(String string){
+        this.imgs = imgs;
+    }
     public String getCountries() {
         return countries;
     }
@@ -114,4 +125,11 @@ public class GetDataAdapter {
     }
 
 
+    public String getNeg() {
+        return neg;
+    }
+
+    public void setNeg(String neg) {
+        this.neg = neg;
+    }
 }

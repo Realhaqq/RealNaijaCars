@@ -24,11 +24,13 @@ public class ActivityLogin extends AppCompatActivity {
     private static final String KEY_FULL_NAME = "full_name";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_PASSWORD = "password";
+    private static final String KEY_PIC = "pic";
     private static final String KEY_EMPTY = "";
 
     private EditText etEmail;
     private EditText etPassword;
     private String email;
+    private String pic;
 
     private String password;
     private ProgressDialog pDialog;
@@ -43,11 +45,14 @@ public class ActivityLogin extends AppCompatActivity {
             loadDashboard();
         }
         setContentView(R.layout.activity_login);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        textView = (TextView) findViewById(R.id.textView);
 
         etEmail = findViewById(R.id.txtemail);
         etPassword = findViewById(R.id.txtpassword);
 
         TextView register = findViewById(R.id.txtreg);
+        TextView forget = findViewById(R.id.txtforget);
         Button login = findViewById(R.id.btnlogin);
 
         //Launch Registration screen when Register Button is clicked
@@ -55,6 +60,15 @@ public class ActivityLogin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ActivityLogin.this, ActivityRegister.class);
+                startActivity(i);
+
+            }
+        });
+
+        forget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ActivityLogin.this, ForgetPass.class);
                 startActivity(i);
 
             }
@@ -80,6 +94,8 @@ public class ActivityLogin extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), DashboardActivity.class);
         startActivity(i);
         finish();
+
+
     }
 
     /**
@@ -102,6 +118,7 @@ public class ActivityLogin extends AppCompatActivity {
             //Populate the request parameters
             request.put(KEY_EMAIL, email);
             request.put(KEY_PASSWORD, password);
+            request.put(KEY_PIC, pic);
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -12,6 +12,8 @@ public class AdsDetailAdapter {
     public String type;
     public String userid;
     public String featured;
+    public String phone;
+    public String email;
 
     public String getImageServerUrl() {
         return ImageServerUrl;

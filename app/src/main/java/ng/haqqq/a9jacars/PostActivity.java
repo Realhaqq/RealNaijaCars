@@ -34,7 +34,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PostActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = PostActivity.class.getSimpleName();
 
     private static final int REQUEST_GALLERY_CODE = 200;
     private static final int READ_REQUEST_CODE = 300;

@@ -33,6 +33,7 @@ public class SessionHandler {
         mEditor.putString(KEY_EMAIL, email);
         mEditor.putString(KEY_FULL_NAME, fullName);
 
+
         Date date = new Date();
 
         //Set user session for next 7 days
@@ -80,6 +81,7 @@ public class SessionHandler {
         user.setFullName(mPreferences.getString(KEY_FULL_NAME, KEY_EMPTY));
         user.setSessionExpiryDate(new Date(mPreferences.getLong(KEY_EXPIRES, 0)));
         user.setPic(mPreferences.getString(KEY_PIC, KEY_EMPTY));
+
         return user;
     }
 

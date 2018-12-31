@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/image_13"
+
     android:fitsSystemWindows="true"
     android:orientation="vertical"
 
@@ -43,7 +43,7 @@
                 android:padding="@dimen/spacing_mlarge">
 
                 <com.mikhaellopez.circularimageview.CircularImageView
-                    android:id="@+id/pic"
+                    android:id="@+id/profilepic"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@drawable/avatar"
@@ -79,67 +79,224 @@
                 android:paddingBottom="@dimen/spacing_mlarge"
                 android:paddingTop="@dimen/spacing_mlarge">
 
-                <LinearLayout
+                <android.support.v7.widget.CardView
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_small"
                     android:layout_weight="1"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    app:cardBackgroundColor="@color/grey_5"
+                    app:cardCornerRadius="3dp"
 
-                    <Button
-                        android:id="@+id/btnmyads"
+
+                    app:cardElevation="0dp">
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+                        style="@style/RippleStyleBlack"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="MY ADS" />
-                </LinearLayout>
 
-                <LinearLayout
+                        >
+
+                        <LinearLayout
+                            android:id="@+id/mymessage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorChipViewBackground"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_large">
+
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginBottom="@dimen/spacing_smlarge"
+                                android:layout_marginTop="@dimen/spacing_smlarge"
+                                android:tint="@color/md_material_blue_800"
+                                app:srcCompat="@drawable/ic_textsms" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MESSAGES"
+                                android:textAlignment="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                android:textColor="@color/blue_500" />
+
+                        </LinearLayout>
+
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_small"
                     android:layout_weight="1"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    app:cardBackgroundColor="@color/grey_5"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="0dp">
 
-                    <Button
-                        android:id="@+id/btnmessages"
+                    <com.balysv.materialripple.MaterialRippleLayout
+                        style="@style/RippleStyleBlack"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="MESSAGES" />
-                </LinearLayout>
+                        android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/myads"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorChipViewBackground"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_large">
 
-                    <Button
-                        android:id="@+id/btnlogout"
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginBottom="@dimen/spacing_smlarge"
+                                android:layout_marginTop="@dimen/spacing_smlarge"
+                                android:tint="@color/md_material_blue_800"
+                                app:srcCompat="@drawable/ic_attach_money" />
 
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="LOGOUT" />
-                </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MY ADS"
+                                android:textAlignment="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                android:textColor="@color/blue_500" />
+
+                        </LinearLayout>
+
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+
 
             </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/spacing_mlarge"
+                android:paddingTop="@dimen/spacing_mlarge">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_small"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/grey_5"
+                    app:cardCornerRadius="3dp"
+
+
+                    app:cardElevation="0dp">
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+                        style="@style/RippleStyleBlack"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        >
+
+                        <LinearLayout
+                            android:id="@+id/mysettings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorChipViewBackground"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_large">
+
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginBottom="@dimen/spacing_smlarge"
+                                android:layout_marginTop="@dimen/spacing_smlarge"
+                                android:tint="@color/md_material_blue_800"
+                                app:srcCompat="@drawable/ic_settings" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SETTINGS"
+                                android:textAlignment="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                android:textColor="@color/blue_500" />
+
+                        </LinearLayout>
+
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_small"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/grey_5"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="0dp">
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+                        style="@style/RippleStyleBlack"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/mylogout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorChipViewBackground"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_large">
+
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginBottom="@dimen/spacing_smlarge"
+                                android:layout_marginTop="@dimen/spacing_smlarge"
+                                android:tint="@color/md_material_blue_800"
+                                app:srcCompat="@drawable/ic_person_outline" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="LOGOUT"
+                                android:textAlignment="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                android:textColor="@color/blue_500" />
+
+                        </LinearLayout>
+
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+
+
+            </LinearLayout>
+
+
+
+
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/grey_10" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/naijalogo" />
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -161,14 +318,6 @@
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
-
-    <ImageView
-        android:id="@+id/image_6"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:layout_marginTop="@dimen/spacing_middle"
-        android:scaleType="centerCrop"
-        android:src="@color/grey_20" />
 
 
 

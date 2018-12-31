@@ -5,21 +5,29 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>  {
 
     Context context;
 
     List<GetDataAdapter> getDataAdapter;
-
+    private List<GetDataAdapter> adsList;
     ImageLoader imageLoader1;
 
+
+    private AdsAdapterListener listener;
 
 
     public RecyclerViewAdapter(List<GetDataAdapter> getDataAdapter, Context context){
@@ -46,24 +54,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         GetDataAdapter getDataAdapter1 =  getDataAdapter.get(position);
 
-        imageLoader1 = ServerImageParseAdapter.getInstance(context).getImageLoader();
 
-        imageLoader1.get(getDataAdapter1.getImageServerUrl(),
-                ImageLoader.getImageListener(
-                        Viewholder.networkImageView,//Server Image
-                        R.mipmap.ic_launcher,//Before loading server image the default showing image.
-                        android.R.drawable.ic_dialog_alert //Error image if requested image dose not found on server.
-                )
-        );
+        Picasso.with(context)
+                .load(getDataAdapter1.getImageServerUrl())
+//                .centerCrop(150, 150)
+                .resize(150, 150)
+                .placeholder(R.drawable.cars)
+                .centerInside()
+                .error(R.drawable.cars)
+                .into(Viewholder.networkImageView);
 
-        Viewholder.networkImageView.setImageUrl(getDataAdapter1.getImageServerUrl(), imageLoader1);
+       // Viewholder.networkImageView.setImageUrl(getDataAdapter1.getImageServerUrl(), imageLoader1);
 
         Viewholder.ImageTitleNameView.setText(getDataAdapter1.getImageTitleName());
 
         Viewholder.location.setText(getDataAdapter1.getLocation());
 
-        Viewholder.price.setText(getDataAdapter1.getPrice());
+        Viewholder.price.setText("N" + getDataAdapter1.getPrice());
+//
+//        String n = getDataAdapter1.getNeg();
 
+        Viewholder.neg.setText(getDataAdapter1.getNeg());
 
 
 
@@ -78,27 +89,32 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
 
-
     class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView ImageTitleNameView;
-        public NetworkImageView networkImageView ;
+        public ImageView networkImageView ;
         public TextView location;
         public TextView price;
+        public TextView neg;
 
 
         public ViewHolder(View itemView) {
 
             super(itemView);
 
-            ImageTitleNameView = (TextView) itemView.findViewById(R.id.textViewmodel) ;
+            ImageTitleNameView = itemView.findViewById(R.id.textViewmodel) ;
 
-            networkImageView = (NetworkImageView) itemView.findViewById(R.id.VollyNetworkImageView1) ;
+            networkImageView =  itemView.findViewById(R.id.VollyNetworkImageView1) ;
 
-            location = (TextView) itemView.findViewById(R.id.txtlocation);
+            location = itemView.findViewById(R.id.txtlocation);
 
-            price = (TextView) itemView.findViewById(R.id.txtprice);
+            price = itemView.findViewById(R.id.txtprice);
+            neg = itemView.findViewById(R.id.btnneg);
 
         }
+    }
+
+    public interface AdsAdapterListener {
+        void onContactSelected(GetDataAdapter ads);
     }
 }

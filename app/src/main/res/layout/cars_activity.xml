@@ -5,9 +5,9 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    tools:context=".activity.login.CarsActivity">
+    tools:context="CarsActivity">
+    <include layout="@layout/toolbarsearchbar" />
 
-    <include layout="@layout/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,6 +15,10 @@
         android:layout_marginTop="60dp"
 
         android:orientation="vertical">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_middle" />
+
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -29,7 +33,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview1"
 
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="fill_parent" />
 
 

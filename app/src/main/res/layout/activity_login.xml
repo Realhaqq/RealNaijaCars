@@ -6,6 +6,7 @@
     android:background="@color/blue_700"
     android:orientation="vertical">
 
+
     <LinearLayout
         android:layout_width="330dp"
         android:layout_height="match_parent"
@@ -46,11 +47,9 @@
             android:text="Sign in to continue"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
             android:textColor="#ffffff" />
-
         <View
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_height="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -117,7 +116,7 @@
 
         <View
             android:layout_width="0dp"
-            android:layout_height="@dimen/spacing_medium" />
+            android:layout_height="20dp" />
 
         <LinearLayout
             android:id="@+id/sign_up_for_account"
@@ -127,11 +126,21 @@
             android:gravity="center"
             android:orientation="horizontal">
 
+
             <TextView
                 android:id="@+id/txtreg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SIGN UP FOR AN ACCOUNT?"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/txtforget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FORGET?"
+
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                 android:textColor="#ffffff" />
 

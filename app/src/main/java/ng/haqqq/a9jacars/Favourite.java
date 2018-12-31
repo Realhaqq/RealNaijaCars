@@ -1,8 +1,11 @@
 package ng.haqqq.a9jacars;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,17 +26,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Favourite extends AppCompatActivity {
+    public static final String  post_url = "http://192.168.43.73/naijacars/Api/deletefav.php";
+    public static final String  KEY_USERID= "userid";
+    public static final String KEY_ADSID = "adsid";
     private SessionHandler session;
     List<GetDataAdapter> GetDataAdapter1;
     RecyclerView recyclerView;
     GetDataAdapter getDataAdapter2;
     RecyclerView.LayoutManager recyclerViewlayoutManager;
     RecyclerView.Adapter recyclerViewadapter;
+    private ProgressDialog pDialog;
 
-    String GET_JSON_DATA_HTTP_URL = "http://192.168.43.40/naijacars/Api/adslistfav.php?email=haqq4peace@gmail.com";
+    String GET_JSON_DATA_HTTP_URL;
     String JSON_IMAGE_TITLE_NAME = "title";
     String JSON_IMAGE_URL = "pic";
     String JSON_LOCATION = "location";
@@ -45,17 +53,25 @@ public class Favourite extends AppCompatActivity {
     String JSON_DESCRIPTION = "description";
     String JSON_CATEGORY = "category";
     String JSON_TYPE = "type";
+    String JSON_IMGS = "img_url";
 
     JsonArrayRequest jsonArrayRequest;
     RequestQueue requestQueue;
     public String adsid;
+    public String adid;
+    public String userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        displayLoader();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cars_activity);
+
+        Intent intent = getIntent();
+        GET_JSON_DATA_HTTP_URL = "http://192.168.43.73/naijacars/Api/favouritelist.php?email=" + intent.getStringExtra("email");
+
+
         session = new SessionHandler(getApplicationContext());
-        User user = session.getUserDetails();
         GetDataAdapter1 = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerview1);
 
@@ -69,8 +85,9 @@ public class Favourite extends AppCompatActivity {
                 recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, final int position) {
+                User user = session.getUserDetails();
                 Intent i = new Intent(Favourite.this, AdsDetail.class);
-                i.putExtra("EXTRA_SESSION_ID", GetDataAdapter1.get(position).getId());
+                i.putExtra("ID", GetDataAdapter1.get(position).getId());
                 i.putExtra("TITLE", GetDataAdapter1.get(position).getImageTitleName());
                 i.putExtra("CATEGORY", GetDataAdapter1.get(position).getCategory());
                 i.putExtra("DESCRIPTION", GetDataAdapter1.get(position).getDescription());
@@ -80,6 +97,10 @@ public class Favourite extends AppCompatActivity {
                 i.putExtra("FULLNAME", GetDataAdapter1.get(position).getFullname());
                 i.putExtra("EMAIL", GetDataAdapter1.get(position).getEmail());
                 i.putExtra("PHONE", GetDataAdapter1.get(position).getPhone());
+                i.putExtra("PIC", GetDataAdapter1.get(position).getImageServerUrl());
+                i.putExtra("LINK", GetDataAdapter1.get(position).getId());
+                i.putExtra("IMGS", GetDataAdapter1.get(position).getImgs());
+                i.putExtra("uemail", user.getEmail());
 
 
                 startActivity(i);
@@ -88,8 +109,11 @@ public class Favourite extends AppCompatActivity {
 
             @Override
             public void onLongClick(View view, int position) {
-                Toast.makeText(Favourite.this, "Long press on position :" + position,
-                        Toast.LENGTH_LONG).show();
+                adid =  GetDataAdapter1.get(position).getId();
+                userid = GetDataAdapter1.get(position).getEmail();
+
+                Delete();
+
             }
         }));
 
@@ -134,12 +158,15 @@ public class Favourite extends AppCompatActivity {
                 getDataAdapter2.setPrice(json.getString(JSON_PRICE));
                 getDataAdapter2.setImageServerUrl(json.getString(JSON_IMAGE_URL));
                 getDataAdapter2.setId(json.getString(JSON_ID));
-                getDataAdapter2.setCategory(json.getString(JSON_DESCRIPTION));
+                getDataAdapter2.setCategory(json.getString(JSON_CATEGORY));
                 getDataAdapter2.setType(json.getString(JSON_TYPE));
                 getDataAdapter2.setCategory(json.getString(JSON_CATEGORY));
                 getDataAdapter2.setFullname(json.getString(JSON_FULLNAME));
                 getDataAdapter2.setPhone(json.getString(JSON_PHONE));
                 getDataAdapter2.setEmail(json.getString(JSON_EMAIL));
+                getDataAdapter2.setDescription(json.getString(JSON_DESCRIPTION));
+                getDataAdapter2.setImgs(json.getString(JSON_IMGS));
+
 
 
             } catch (JSONException e) {
@@ -151,8 +178,19 @@ public class Favourite extends AppCompatActivity {
 
         recyclerViewadapter = new RecyclerViewAdapter(GetDataAdapter1, this);
         recyclerView.setAdapter(recyclerViewadapter);
+        pDialog.dismiss();
     }
 
+
+
+    private void displayLoader() {
+        pDialog = new ProgressDialog(Favourite.this);
+        pDialog.setMessage("Please wait...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+    }
     public static interface ClickListener {
         public void onClick(View view, int position);
 
@@ -205,5 +243,48 @@ public class Favourite extends AppCompatActivity {
         }
 
     }
+
+
+    private void Delete(){
+        class addtofav extends AsyncTask<Bitmap,Void,String> {
+
+            ProgressDialog loading;
+            RequestHandler rh = new RequestHandler();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(Favourite.this, "Removing from Favourites....", null,true,true);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            protected String doInBackground(Bitmap... params) {
+                Intent intent = getIntent();
+//                id = UUID.randomUUID().toString();
+                HashMap<String,String> data = new HashMap<>();
+
+                data.put(KEY_ADSID, adid);
+                data.put(KEY_USERID, userid);
+
+
+                String result = rh.sendPostRequest(post_url,data);
+
+                return result;
+            }
+        }
+
+        addtofav ui = new addtofav();
+        ui.execute();
+    }
+
+
 
 }

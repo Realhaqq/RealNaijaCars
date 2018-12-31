@@ -22,8 +22,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/bt_back"
+                    android:layout_width="?attr/actionBarSize"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="@color/white_transparency"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/ic_arrow_back" />
+
 
                 <EditText
                     android:id="@+id/et_search"
@@ -31,9 +40,13 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
+                    android:editable="true"
+                    android:enabled="true"
                     android:hint="Search"
                     android:imeOptions="actionSearch"
+                    android:inputType="text"
                     android:maxLines="1"
+                    android:selectAllOnFocus="true"
                     android:singleLine="true">
 
                     <requestFocus />
@@ -41,13 +54,14 @@
                 </EditText>
 
                 <ImageButton
-                    android:id="@+id/bt_clear"
+                    android:id="@+id/btnsearch"
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@android:color/transparent"
-                    android:tint="@android:color/white"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+
+                    android:tint="@color/white_transparency"
                     android:visibility="visible"
-                    app:srcCompat="@drawable/ic_close" />
+                    app:srcCompat="@drawable/ic_search" />
 
             </LinearLayout>
 
@@ -55,68 +69,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone" />
-
-        <LinearLayout
-            android:id="@+id/lyt_no_result"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No result"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-                android:textColor="@color/grey_40"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_medium"
-                android:gravity="center"
-                android:text="Try input more general keyword"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textColor="@color/grey_40" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lyt_suggestion"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerSuggestion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/grey_90"
-                android:cacheColorHint="#0000"
-                android:scrollbars="none"
-                android:scrollingCache="true" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@color/overlay_dark_40" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
 
 </LinearLayout>

@@ -19,7 +19,7 @@ import retrofit2.http.Part;
 interface Service {
     /*@Multipart
     @POST("/upload_multi_files/MultiUpload.php")
-    Call<ResponseBody> uploadFile(@Part MultipartBody.Part file, @Part("name") RequestBody name);*/
+    Call<ResponseBody> uploadFile(@PartActivity MultipartBody.PartActivity file, @PartActivity("name") RequestBody name);*/
     @Multipart
     @POST("naijacars/Api/upload.php")
     Call<UploadObject> uploadSingleFile(@Part MultipartBody.Part file, @Part("name") RequestBody name);

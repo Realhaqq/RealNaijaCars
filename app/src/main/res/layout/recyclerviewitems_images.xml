@@ -1,0 +1,8 @@
+<ImageView android:id="@+id/rimage"
+    android:layout_width="90dp"
+    android:layout_height="90dp"
+    android:layout_marginEnd="@dimen/spacing_medium"
+    android:layout_marginRight="@dimen/spacing_medium"
+    android:scaleType="centerCrop"
+    android:src="@color/grey_20"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
